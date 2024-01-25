@@ -34,10 +34,33 @@ class Tree {
             this.insert(i);
         });
     }
+find(data) {
+    return this._find(this.root, data);
+}
+
+_find(node, data) {
+    if (node === null) {
+        // Data not found in the tree
+        return null;
+    }
+
+    if (data === node.data) {
+        // Data found
+        return  `found: ${node.data}`;
+    } else if (data > node.data) {
+        // Search in the right subtree
+        return this._find(node.right, data);
+    } else {
+        // Search in the left subtree
+        return this._find(node.left, data);
+    }
+}
+
 }
 
 // Example usage:
 const myTree = new Tree();
-myTree.insertArray([5, 9, 4, 0, 6]);
-
+myTree.insertArray([5, 8, 4, 9, 6]);
+console.log(myTree.find(6))
+// console.log(myTree)
 
